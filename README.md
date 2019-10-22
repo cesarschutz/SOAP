@@ -13,4 +13,5 @@ No projeto CalculadoraClient temos que ter também a interface CalculadoraServer
 
 Com o CalculadoraServer no ar, podemos rodar o CalculadoraClient e ele irá invocar todas as operações do CalculadoraServer e imprimir no console =)
 
+Em Execução:
 ![alt text](https://github.com/cesarschutz/SOAP/blob/master/Consumindo%20CalculadoraServer.png?raw=true)
