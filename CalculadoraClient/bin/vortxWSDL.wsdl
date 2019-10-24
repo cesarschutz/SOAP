@@ -1,0 +1,254 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+	xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+	name="ServicePassivo" targetNamespace="">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified">
+			<xs:import
+				namespace="http://www.quicksoft.com.br/ns/wsvortx/v1/" />
+			<xs:element name="alterarStatus">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q1="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified"
+							name="statusContratoAlterado"
+							type="q1:statusContratoAlteradoType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="alterarStatusResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q2="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified"
+							name="retornoOperacao" type="q2:retornoOperacaoType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="postarArquivoPkcs7">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q3="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified"
+							name="arquivoPkcs7" type="q3:arquivoPkcs7Type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="postarArquivoPkcs7Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q4="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified"
+							name="retornoOperacao" type="q4:retornoOperacaoType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="assinar">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q5="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified" name="assinatura"
+							type="q5:assinaturaType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="assinarResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element
+							xmlns:q6="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+							minOccurs="0" maxOccurs="1" form="unqualified"
+							name="retornoOperacao" type="q6:retornoOperacaoType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://www.quicksoft.com.br/ns/wsvortx/v1/"
+			elementFormDefault="qualified"
+			targetNamespace="http://www.quicksoft.com.br/ns/wsvortx/v1/">
+			<xs:complexType name="statusContratoAlteradoType">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="1"
+						form="unqualified" name="responsavel" type="tns:responsavelType" />
+				</xs:sequence>
+				<xs:attribute name="idContrato" type="xs:long"
+					use="required" />
+				<xs:attribute name="codigoStatus" type="xs:int"
+					use="required" />
+				<xs:attribute name="duplicatas" type="xs:boolean" />
+			</xs:complexType>
+			<xs:complexType name="responsavelType">
+				<xs:attribute name="nome" type="xs:string" />
+				<xs:attribute name="cpf" type="xs:long" use="required" />
+				<xs:attribute name="email" type="xs:string" />
+			</xs:complexType>
+			<xs:complexType name="retornoOperacaoType">
+				<xs:sequence>
+					<xs:element minOccurs="1" maxOccurs="1"
+						form="unqualified" name="idContrato" type="xs:long" />
+					<xs:element minOccurs="1" maxOccurs="1"
+						form="unqualified" name="status" type="xs:int" />
+					<xs:element minOccurs="0" maxOccurs="unbounded"
+						form="unqualified" name="erro" nillable="true" type="tns:erroType" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="erroType">
+				<xs:sequence>
+					<xs:element minOccurs="1" maxOccurs="1"
+						form="unqualified" name="codigo" type="xs:int" />
+					<xs:element minOccurs="0" maxOccurs="1"
+						form="unqualified" name="descricao" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="arquivoPkcs7Type">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="1"
+						form="unqualified" name="arquivo">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:base64Binary">
+									<xs:attribute name="duplicata" type="xs:boolean" />
+									<xs:attribute name="idDuplicata" type="xs:string" />
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="idContrato" type="xs:long"
+					use="required" />
+			</xs:complexType>
+			<xs:complexType name="assinaturaType">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="1"
+						form="unqualified" name="signatario" type="tns:signatarioType" />
+				</xs:sequence>
+				<xs:attribute name="idContrato" type="xs:long"
+					use="required" />
+				<xs:attribute name="data" type="xs:dateTime"
+					use="required" />
+			</xs:complexType>
+			<xs:complexType name="signatarioType">
+				<xs:attribute name="nome" type="xs:string" />
+				<xs:attribute name="email" type="xs:string" />
+				<xs:attribute name="cpf" type="xs:long" use="required" />
+				<xs:attribute name="duplicatas" type="xs:boolean" />
+				<xs:attribute name="codigoPapel" type="xs:int"
+					use="required" />
+				<xs:attribute name="papel" type="xs:string" />
+				<xs:attribute name="validador" type="xs:boolean" />
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="alterarStatusRequest">
+		<wsdl:part name="parameters" element="alterarStatus" />
+	</wsdl:message>
+	<wsdl:message name="alterarStatusResponse">
+		<wsdl:part name="parameters" element="alterarStatusResponse" />
+	</wsdl:message>
+	<wsdl:message name="postarArquivoPkcs7Request">
+		<wsdl:part name="parameters" element="postarArquivoPkcs7" />
+	</wsdl:message>
+	<wsdl:message name="postarArquivoPkcs7Response">
+		<wsdl:part name="parameters"
+			element="postarArquivoPkcs7Response" />
+	</wsdl:message>
+	<wsdl:message name="assinarResquest">
+		<wsdl:part name="parameters" element="assinar" />
+	</wsdl:message>
+	<wsdl:message name="assinarResponse">
+		<wsdl:part name="parameters" element="assinarResponse" />
+	</wsdl:message>
+	<wsdl:portType name="IContratosImplServiceSoapBinding">
+		<wsdl:operation name="alterarStatus">
+			<wsdl:input
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/alterarStatus"
+				name="alterarStatusRequest" message="alterarStatusRequest" />
+			<wsdl:output
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/alterarStatusResponse"
+				name="alterarStatusResponse" message="alterarStatusResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="postarArquivoPkcs7">
+			<wsdl:input
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/postarArquivoPkcs7"
+				name="postarArquivoPkcs7Request" message="postarArquivoPkcs7Request" />
+			<wsdl:output
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/postarArquivoPkcs7Response"
+				name="postarArquivoPkcs7Response"
+				message="postarArquivoPkcs7Response" />
+		</wsdl:operation>
+		<wsdl:operation name="assinar">
+			<wsdl:input
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/assinar"
+				name="assinarResquest" message="assinarResquest" />
+			<wsdl:output
+				wsaw:Action="urn:IContratosImplServiceSoapBinding/assinarResponse"
+				name="assinarResponse" message="assinarResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding
+		name="BasicHttpBinding_IContratosImplServiceSoapBinding"
+		type="IContratosImplServiceSoapBinding">
+		<soap:binding
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="alterarStatus">
+			<soap:operation
+				soapAction="urn:IContratosImplServiceSoapBinding/alterarStatus"
+				style="document" />
+			<wsdl:input name="alterarStatusRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="alterarStatusResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="postarArquivoPkcs7">
+			<soap:operation
+				soapAction="urn:IContratosImplServiceSoapBinding/postarArquivoPkcs7"
+				style="document" />
+			<wsdl:input name="postarArquivoPkcs7Request">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="postarArquivoPkcs7Response">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="assinar">
+			<soap:operation
+				soapAction="urn:IContratosImplServiceSoapBinding/assinar"
+				style="document" />
+			<wsdl:input name="assinarResquest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="assinarResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ServicePassivo">
+		<wsdl:port
+			name="BasicHttpBinding_IContratosImplServiceSoapBinding"
+			binding="BasicHttpBinding_IContratosImplServiceSoapBinding">
+			<soap:address
+				location="http://wsqs.vortx.com.br/ServicePassivoQCertifica.svc" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

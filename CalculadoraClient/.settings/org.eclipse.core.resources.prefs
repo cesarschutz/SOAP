@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/ArquivoPkcs7Type.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/ArquivoPkcs7TypeArquivo.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/AssinaturaType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/ErroType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/ResponsavelType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/RetornoOperacaoType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/SignatarioType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/StatusContratoAlteradoType.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/Stub/BasicHttpBinding_IContratosImplServiceSoapBindingStub.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/Stub/IContratosImplServiceSoapBinding.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/Stub/ServicePassivo.java=UTF-8
+encoding//src/br/com/quicksoft/www/ns/wsvortx/v1/Stub/ServicePassivoLocator.java=UTF-8
